@@ -1,0 +1,43 @@
+# ─────────────────────────────────────
+# 빌드 결과물 및 의존성
+.next/
+node_modules/
+out/
+
+# 환경 설정 및 시크릿
+.env
+.env.*
+*.local
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 로그 / 디버깅 파일
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# pnpm 캐시 및 상태파일
+.pnpm-store/
+.pnpm-debug.log
+
+# VSCode 등 IDE 설정 (원할 경우)
+.vscode/
+.idea/
+
+# 테스트 커버리지
+coverage/
+
+# 백업 파일
+*.bak
+*.swp
+*.tmp
+
+# 의심되는 임시 폴더
+-p/
+
+# macOS 관련
+.AppleDouble
+.LSOverride
