@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Star, Heart } from "lucide-react"
+import { travelDestinations } from "@/lib/travelData"
 
 interface WizardResultsProps {
   data: any
@@ -9,41 +10,12 @@ interface WizardResultsProps {
 }
 
 export default function WizardResults({ data, onRestart }: WizardResultsProps) {
-  const recommendations = [
-    {
-      id: 1,
-      title: "부산 진짜 밥상: 시장 속 이야기와 맛",
-      description: "부산 부전시장 투어 + 보리밥 정식 + 60년 노포 탐방",
-      rating: 4.8,
-      reviews: 15,
-      price: "289,000원~",
-      capacity: "26/30",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "travel",
-    },
-    {
-      id: 2,
-      title: "바다 냄새 따라 골목 밥상 투어",
-      description: "부산 초량 이바구길 + 해물칼국수+ 깡통시장 식도락",
-      rating: 4.5,
-      reviews: 28,
-      price: "309,000원~",
-      capacity: "26/30",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "travel",
-    },
-    {
-      id: 3,
-      title: "기장 대게 한 상, 바닷가를 품다",
-      description: "부산 기장 대게 정식 + 해동용궁사 산책 + 오시리아 해변 카페",
-      rating: 4.6,
-      reviews: 126,
-      price: "349,000원~",
-      capacity: "12/20",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "travel",
-    },
-  ]
+  const recommendations = travelDestinations.slice(0, 3).map((item) => ({
+    ...item,
+    title: item.name,
+    reviews: Math.floor(Math.random() * 100) + 1,
+    capacity: `${Math.floor(Math.random() * 10) + 15}/30`,
+  }))
 
   return (
     <div className="min-h-screen bg-gray-50">

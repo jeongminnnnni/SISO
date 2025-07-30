@@ -1,7 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { X } from "lucide-react"
+import DateRangePicker from "@wojtekmaj/react-daterange-picker"
+import "@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css"
+import "react-calendar/dist/Calendar.css"
+import "react-date-picker/dist/DatePicker.css"
 
 interface WizardStep4Props {
   onNext: () => void
@@ -11,7 +15,7 @@ interface WizardStep4Props {
 }
 
 export default function WizardStep4({ onNext, onPrev, onUpdate, data }: WizardStep4Props) {
-  const [selectedDate, setSelectedDate] = useState("")
+  const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([null, null])
   const [departureTime, setDepartureTime] = useState("12:30")
   const [arrivalTime, setArrivalTime] = useState("22:30")
   const [peopleCount, setPeopleCount] = useState(2)
@@ -26,7 +30,7 @@ export default function WizardStep4({ onNext, onPrev, onUpdate, data }: WizardSt
   const handleNext = () => {
     onUpdate({
       schedule: {
-        date: selectedDate,
+        dateRange,
         departureTime,
         arrivalTime,
         peopleCount,
@@ -48,34 +52,14 @@ export default function WizardStep4({ onNext, onPrev, onUpdate, data }: WizardSt
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* 캘린더 */}
         <div>
-          <div className="flex items-center justify-between mb-4">
-            <button className="p-2 hover:bg-gray-100 rounded">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <h3 className="text-lg font-semibold">2025년 8월</h3>
-            <button className="p-2 hover:bg-gray-100 rounded">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-7 gap-1 text-center text-sm">
-            {["일", "월", "화", "수", "목", "금", "토"].map((day) => (
-              <div key={day} className="p-2 font-medium text-gray-500">
-                {day}
-              </div>
-            ))}
-            {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
-              <button
-                key={date}
-                onClick={() => setSelectedDate(`2025-08-${date.toString().padStart(2, "0")}`)}
-                className={`p-2 hover:bg-blue-100 rounded ${
-                  selectedDate === `2025-08-${date.toString().padStart(2, "0")}` ? "bg-blue-600 text-white" : ""
-                }`}
-              >
-                {date}
-              </button>
-            ))}
-          </div>
+          <DateRangePicker
+            onChange={setDateRange}
+            value={dateRange}
+            minDate={new Date()}
+            maxDate={new Date(2030, 11, 31)} // 2030년 12월 31일까지
+            calendarIcon={null} // 아이콘 제거
+            clearIcon={null} // 클리어 아이콘 제거
+          />
         </div>
 
         {/* 시간 및 기타 설정 */}

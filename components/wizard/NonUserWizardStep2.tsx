@@ -38,7 +38,7 @@ export default function NonUserWizardStep2({ onNext, onPrev }: NonUserWizardStep
           <div className="text-center">
             <div className="mb-4">
               <Image
-                src="/placeholder.svg?height=80&width=80&text=🧳"
+                src="/trip.png"
                 alt="여행"
                 width={80}
                 height={80}
@@ -58,7 +58,7 @@ export default function NonUserWizardStep2({ onNext, onPrev }: NonUserWizardStep
           <div className="text-center">
             <div className="mb-4">
               <Image
-                src="/placeholder.svg?height=80&width=80&text=🌱"
+                src="/class.png"
                 alt="클래스"
                 width={80}
                 height={80}
