@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react"
 
-interface WizardData {
+export interface WizardData {
   location?: {
     city: string
     district: string
