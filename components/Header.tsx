@@ -23,10 +23,10 @@ export default function Header() {
           </Link>
 
           {/* 네비게이션 */}
-          <nav className="flex space-x-8">
+          <nav className="flex space-x-20">
             <Link
               href="/travel"
-              className={`font-medium text-xl ${
+              className={`font-medium text-lg ${
                 pathname === "/travel" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >
@@ -34,13 +34,13 @@ export default function Header() {
             </Link>
             <Link
               href="/class"
-              className={`font-medium text-xl ${pathname === "/class" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"}`}
+              className={`font-medium text-lg ${pathname === "/class" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"}`}
             >
               클래스
             </Link>
             <Link
               href="/community"
-              className={`font-medium text-xl ${
+              className={`font-medium text-lg ${
                 pathname === "/community" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >
@@ -48,7 +48,7 @@ export default function Header() {
             </Link>
             <Link
               href="/support"
-              className={`font-medium text-xl ${
+              className={`font-medium text-lg ${
                 pathname === "/support" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >

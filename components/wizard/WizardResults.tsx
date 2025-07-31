@@ -21,7 +21,7 @@ export default function WizardResults({ data, onRestart }: WizardResultsProps) {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h1 className="text-3xl font-bold text-center mb-8">시소에서 가장 좋은 일정 3개를 세웠어요 :-)</h1>
+          <h1 className="text-3xl font-bold text-center mb-8">시소에서 가장 좋은 일정 3개를 세웠어요😊</h1>
 
           <div className="bg-blue-50 p-6 rounded-lg mb-8">
             <h2 className="text-lg font-semibold mb-4">

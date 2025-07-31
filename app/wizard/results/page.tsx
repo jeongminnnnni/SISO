@@ -40,15 +40,15 @@ export default function WizardResultsPage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h1 className="text-3xl font-bold text-center mb-8">시소에서 가장 좋은 일정을 세웠어요 :-)</h1>
+          <h1 className="text-3xl font-bold text-center mb-8">시소에서 가장 좋은 일정을 세웠어요😊</h1>
 
-          <div className="bg-gray-100 p-6 rounded-lg mb-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">
-              나의 여행 프로필
+          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+            <h2 className="text-lg font-bold mb-4 text-gray-800">
+              다음과 같은 정보를 바탕으로 분석하고 여행 플랜을 제시할 거예요💁‍♂️
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow">
-                <h3 className="font-semibold text-gray-600 mb-1">거주지</h3>
+                <h3 className="font-semibold text-gray-600 mb-1">🏠거주지</h3>
                 <p className="text-sm text-gray-800">
                   {wizardData.location?.city} {wizardData.location?.district}
                 </p>
@@ -57,17 +57,17 @@ export default function WizardResultsPage() {
               {isLoggedIn ? (
                 <>
                   <div className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold text-gray-600 mb-1">소비습관</h3>
+                    <h3 className="font-semibold text-gray-600 mb-1">💸소비습관</h3>
                     <p className="text-sm text-gray-800">
                       {wizardData.userProfile?.spendingHabit === "quality-first"
-                        ? "고품질 선호"
+                        ? "비싸도 좋으면 구매해요"
                         : wizardData.userProfile?.spendingHabit === "rational"
-                        ? "합리/효율적"
-                        : "가성비 중시"}
+                        ? "합리/효율적이에요"
+                        : "가성비가 중요해요"}
                     </p>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold text-gray-600 mb-1">건강상태</h3>
+                    <h3 className="font-semibold text-gray-600 mb-1">🏥건강상태</h3>
                     <p className="text-sm text-gray-800">
                       {wizardData.userProfile?.healthStatus === "high" ? "튼튼해요" : "보통이에요"}
                     </p>
@@ -76,18 +76,18 @@ export default function WizardResultsPage() {
               ) : (
                 <>
                   <div className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold text-gray-600 mb-1">선호 지역</h3>
+                    <h3 className="font-semibold text-gray-600 mb-1">🗺️선호 지역</h3>
                     <p className="text-sm text-gray-800">{wizardData.schedule?.regions?.join(", ")}</p>
                   </div>
                   <div className="bg-white p-4 rounded-lg shadow">
-                    <h3 className="font-semibold text-gray-600 mb-1">인원</h3>
+                    <h3 className="font-semibold text-gray-600 mb-1">👤인원</h3>
                     <p className="text-sm text-gray-800">{wizardData.schedule?.peopleCount}명</p>
                   </div>
                 </>
               )}
 
               <div className="bg-white p-4 rounded-lg shadow col-span-2 md:col-span-1 lg:col-span-1">
-                <h3 className="font-semibold text-gray-600 mb-1">관심사</h3>
+                <h3 className="font-semibold text-gray-600 mb-1">🎡관심사</h3>
                 <p className="text-sm text-gray-800">{wizardData.interests?.join(", ")}</p>
               </div>
             </div>
