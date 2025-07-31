@@ -1,40 +1,46 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import { useWizard } from "@/contexts/WizardContext"
+import { useState } from 'react';
+import { useWizard } from '@/contexts/WizardContext';
+import { Button } from '@/components/ui/button';
+import CustomCalendar from './CustomCalendar'; // 수정된 부분
+import { DateRange } from 'react-day-picker';
+import { X } from 'lucide-react';
 
 interface NonUserWizardStep4Props {
-  onNext: () => void
-  onPrev: () => void
+  onNext: () => void;
+  onPrev: () => void;
 }
 
 export default function NonUserWizardStep4({ onNext, onPrev }: NonUserWizardStep4Props) {
-  const { wizardData, updateWizardData } = useWizard()
-  const [selectedDate, setSelectedDate] = useState(wizardData.schedule?.date || "")
-  const [departureTime, setDepartureTime] = useState(wizardData.schedule?.departureTime || "12:30")
-  const [arrivalTime, setArrivalTime] = useState(wizardData.schedule?.arrivalTime || "22:30")
-  const [peopleCount, setPeopleCount] = useState(wizardData.schedule?.peopleCount || 2)
-  const [selectedRegions, setSelectedRegions] = useState(wizardData.schedule?.regions || ["부산"])
+  const { wizardData, updateWizardData } = useWizard();
 
-  const regions = ["부산", "울산", "어디나"]
+  // CustomCalendar로부터 날짜 범위를 받기 위한 상태
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(wizardData.schedule?.dateRange);
+
+  const [departureTime, setDepartureTime] = useState(wizardData.schedule?.departureTime || '12:30');
+  const [arrivalTime, setArrivalTime] = useState(wizardData.schedule?.arrivalTime || '22:30');
+  const [peopleCount, setPeopleCount] = useState(wizardData.schedule?.peopleCount || 2);
+  const [selectedRegions, setSelectedRegions] = useState(wizardData.schedule?.regions || ['부산']);
+
+  const regions = ['부산', '울산', '어디나'];
 
   const toggleRegion = (region: string) => {
-    setSelectedRegions((prev) => (prev.includes(region) ? prev.filter((r) => r !== region) : [...prev, region]))
-  }
+    setSelectedRegions((prev) => (prev.includes(region) ? prev.filter((r) => r !== region) : [...prev, region]));
+  };
 
   const handleNext = () => {
     updateWizardData({
       schedule: {
-        date: selectedDate,
+        dateRange,
         departureTime,
         arrivalTime,
         peopleCount,
         regions: selectedRegions,
       },
-    })
-    onNext()
-  }
+    });
+    onNext();
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
@@ -46,39 +52,11 @@ export default function NonUserWizardStep4({ onNext, onPrev }: NonUserWizardStep
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        {/* 캘린더 */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <button className="p-2 hover:bg-gray-100 rounded">
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <h3 className="text-lg font-semibold">2025년 8월</h3>
-            <button className="p-2 hover:bg-gray-100 rounded">
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-7 gap-1 text-center text-sm">
-            {["일", "월", "화", "수", "목", "금", "토"].map((day) => (
-              <div key={day} className="p-2 font-medium text-gray-500">
-                {day}
-              </div>
-            ))}
-            {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
-              <button
-                key={date}
-                onClick={() => setSelectedDate(`2025-08-${date.toString().padStart(2, "0")}`)}
-                className={`p-2 hover:bg-blue-100 rounded ${
-                  selectedDate === `2025-08-${date.toString().padStart(2, "0")}` ? "bg-blue-600 text-white" : ""
-                }`}
-              >
-                {date}
-              </button>
-            ))}
-          </div>
+        <div className="flex justify-center">
+          {/* CustomCalendar 컴포넌트 사용 */}
+          <CustomCalendar onRangeChange={setDateRange} />
         </div>
 
-        {/* 시간 및 기타 설정 */}
         <div className="space-y-6">
           <div>
             <h4 className="font-semibold mb-3">선호 시간</h4>
@@ -107,19 +85,21 @@ export default function NonUserWizardStep4({ onNext, onPrev }: NonUserWizardStep
           <div>
             <h4 className="font-semibold mb-3">인원수</h4>
             <div className="flex items-center space-x-4">
-              <button
+              <Button
+                variant="outline"
+                size="icon"
                 onClick={() => setPeopleCount(Math.max(1, peopleCount - 1))}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
               >
                 -
-              </button>
+              </Button>
               <span className="text-xl font-semibold">{peopleCount}</span>
-              <button
+              <Button
+                variant="outline"
+                size="icon"
                 onClick={() => setPeopleCount(peopleCount + 1)}
-                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
               >
                 +
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -127,17 +107,13 @@ export default function NonUserWizardStep4({ onNext, onPrev }: NonUserWizardStep
             <h4 className="font-semibold mb-3">가고 싶은 지역</h4>
             <div className="flex flex-wrap gap-2">
               {regions.map((region) => (
-                <button
+                <Button
                   key={region}
+                  variant={selectedRegions.includes(region) ? 'default' : 'outline'}
                   onClick={() => toggleRegion(region)}
-                  className={`px-4 py-2 rounded-full border transition-colors ${
-                    selectedRegions.includes(region)
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "border-gray-300 hover:border-gray-400"
-                  }`}
                 >
                   {region}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -145,19 +121,16 @@ export default function NonUserWizardStep4({ onNext, onPrev }: NonUserWizardStep
       </div>
 
       <div className="flex justify-between">
-        <button
-          onClick={onPrev}
-          className="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-400 transition-colors"
-        >
+        <Button onClick={onPrev} variant="default">
           이전
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleNext}
-          className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          disabled={!dateRange?.from || !dateRange?.to || selectedRegions.length === 0}
         >
           분석하기
-        </button>
+        </Button>
       </div>
     </div>
-  )
+  );
 }

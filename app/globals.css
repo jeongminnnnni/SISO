@@ -5,6 +5,7 @@
 @layer base {
   html {
     font-family: "Inter", system-ui, sans-serif;
+    --radius: 0.5rem; /* Added --radius variable */
   }
 
   body {

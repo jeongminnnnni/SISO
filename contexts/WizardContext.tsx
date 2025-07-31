@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, type ReactNode } from "react"
+import { type DateRange } from "react-day-picker"
 
 export interface WizardData {
   location?: {
@@ -11,20 +12,20 @@ export interface WizardData {
   activity?: string
   interests?: string[]
   schedule?: {
-    date: string
-    departureTime: string
-    arrivalTime: string
-    peopleCount: number
-    regions: string[]
+    dateRange?: DateRange
+    departureTime?: string
+    arrivalTime?: string
+    peopleCount?: number
+    regions?: string[]
   }
   userProfile?: {
-    interestCount: string
-    spendingHabit: string
-    healthStatus: string
-    skillLevel: string
-    preferredDuration: string
-    availableDay: string
-    availableTime: string
+    interestCount?: string
+    spendingHabit?: string
+    healthStatus?: string
+    skillLevel?: string
+    preferredDuration?: string
+    availableDay?: string
+    availableTime?: string
   }
   feedback?: {
     issues: string[]

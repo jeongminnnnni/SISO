@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { X } from "lucide-react"
 import { useWizard } from "@/contexts/WizardContext"
+import { Button } from "@/components/ui/button"
 
 interface NonUserWizardStep1Props {
   onNext: () => void
@@ -95,13 +96,12 @@ export default function NonUserWizardStep1({ onNext }: NonUserWizardStep1Props) 
       </div>
 
       <div className="flex justify-end">
-        <button
+        <Button
           onClick={handleNext}
           disabled={!city || !district || !neighborhood}
-          className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
           다음
-        </button>
+        </Button>
       </div>
     </div>
   )

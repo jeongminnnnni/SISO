@@ -83,7 +83,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_001.jpg"
                 alt="부산 바닷길"
                 width={280}
                 height={160}
@@ -108,7 +108,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_002.jpg"
                 alt="여수 바다"
                 width={280}
                 height={160}
@@ -133,7 +133,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_003.jpg"
                 alt="통영 바다미술관"
                 width={280}
                 height={160}
@@ -168,7 +168,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_101.jpg"
                 alt="저수지 낚시교실"
                 width={280}
                 height={160}
@@ -193,7 +193,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_102.jpg"
                 alt="바다 선상낚시"
                 width={280}
                 height={160}
@@ -218,7 +218,7 @@ export default function MainContent() {
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=160&width=280"
+                src="/images/id_103.jpg"
                 alt="낚시터 커피"
                 width={280}
                 height={160}

@@ -1,8 +1,7 @@
-"use client"
-
 import { useState } from "react"
 import { X } from "lucide-react"
 import { useWizard } from "@/contexts/WizardContext"
+import { Button } from "@/components/ui/button"
 
 interface UserWizardStep6Props {
   onNext: () => void
@@ -47,7 +46,7 @@ export default function UserWizardStep6({ onNext, onPrev }: UserWizardStep6Props
             onClick={() => setSkillLevel(option.value)}
             className={`w-full p-4 text-left rounded-lg border-2 transition-colors ${
               skillLevel === option.value
-                ? "border-blue-500 bg-blue-50 text-blue-700"
+                ? "border-blue-500 bg-blue-50" 
                 : "border-gray-200 hover:border-gray-300"
             }`}
           >
@@ -57,19 +56,17 @@ export default function UserWizardStep6({ onNext, onPrev }: UserWizardStep6Props
       </div>
 
       <div className="flex justify-between">
-        <button
+        <Button
           onClick={onPrev}
-          className="bg-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-400 transition-colors"
         >
           이전
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleNext}
           disabled={!skillLevel}
-          className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
           다음
-        </button>
+        </Button>
       </div>
     </div>
   )

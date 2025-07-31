@@ -19,14 +19,14 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* 로고 */}
           <Link href="/" className="flex items-center">
-            <Image src="/siso_logo.png" alt="SISO 로고" width={80} height={32} />
+            <Image src="/siso_logo.png" alt="SISO 로고" width={120} height={48} />
           </Link>
 
           {/* 네비게이션 */}
           <nav className="flex space-x-8">
             <Link
               href="/travel"
-              className={`font-medium ${
+              className={`font-medium text-xl ${
                 pathname === "/travel" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >
@@ -34,13 +34,13 @@ export default function Header() {
             </Link>
             <Link
               href="/class"
-              className={`font-medium ${pathname === "/class" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"}`}
+              className={`font-medium text-xl ${pathname === "/class" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"}`}
             >
               클래스
             </Link>
             <Link
               href="/community"
-              className={`font-medium ${
+              className={`font-medium text-xl ${
                 pathname === "/community" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >
@@ -48,7 +48,7 @@ export default function Header() {
             </Link>
             <Link
               href="/support"
-              className={`font-medium ${
+              className={`font-medium text-xl ${
                 pathname === "/support" ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
               }`}
             >
@@ -62,21 +62,21 @@ export default function Header() {
               <input
                 type="text"
                 placeholder="예약 검색"
-                className="w-32 px-3 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:border-gray-400"
+                className="w-32 px-3 py-1 text-base border border-gray-300 rounded focus:outline-none focus:border-gray-400"
               />
             </div>
 
             {isLoggedIn ? (
               <div className="flex items-center space-x-3">
-                <Link href="/mypage" className="text-white bg-blue-300 rounded-full px-2 py-1 text-sm hover:bg-blue-400 transition-colors">
+                <Link href="/mypage" className="text-white bg-blue-300 rounded-full px-2 py-1 text-base hover:bg-blue-400 transition-colors">
                   {user?.name}님 환영해요
                 </Link>
-                <button onClick={handleLogout} className="text-sm text-gray-500 hover:text-gray-700">
+                <button onClick={handleLogout} className="text-base text-gray-500 hover:text-gray-700">
                   로그아웃
                 </button>
               </div>
             ) : (
-              <Link href="/login" className="text-white bg-blue-300 rounded-full px-2 py-1 text-sm hover:bg-blue-400 transition-colors">
+              <Link href="/login" className="text-white bg-blue-300 rounded-full px-2 py-1 text-base hover:bg-blue-400 transition-colors">
                 로그인하기
               </Link>
             )}
