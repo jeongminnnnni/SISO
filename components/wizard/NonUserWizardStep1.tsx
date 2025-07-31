@@ -4,6 +4,7 @@ import { useState } from "react"
 import { X } from "lucide-react"
 import { useWizard } from "@/contexts/WizardContext"
 import { Button } from "@/components/ui/button"
+import { administrativeDivisions, AdministrativeDivision } from "@/lib/koreanAdministrativeDivisions"
 
 interface NonUserWizardStep1Props {
   onNext: () => void
@@ -11,20 +12,38 @@ interface NonUserWizardStep1Props {
 
 export default function NonUserWizardStep1({ onNext }: NonUserWizardStep1Props) {
   const { wizardData, updateWizardData } = useWizard()
-  const [city, setCity] = useState(wizardData.location?.city || "")
-  const [district, setDistrict] = useState(wizardData.location?.district || "")
-  const [neighborhood, setNeighborhood] = useState(wizardData.location?.neighborhood || "")
+  const [selectedCity, setSelectedCity] = useState(wizardData.location?.city || "")
+  const [selectedDistrict, setSelectedDistrict] = useState(wizardData.location?.district || "")
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState(wizardData.location?.neighborhood || "")
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(e.target.value)
+    setSelectedDistrict("")
+    setSelectedNeighborhood("")
+  }
+
+  const handleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedDistrict(e.target.value)
+    setSelectedNeighborhood("")
+  }
+
+  const handleNeighborhoodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedNeighborhood(e.target.value)
+  }
 
   const handleNext = () => {
     updateWizardData({
       location: {
-        city,
-        district,
-        neighborhood,
+        city: selectedCity,
+        district: selectedDistrict,
+        neighborhood: selectedNeighborhood,
       },
     })
     onNext()
   }
+
+  const currentCity = administrativeDivisions.find((ad) => ad.name === selectedCity)
+  const currentDistrict = currentCity?.subdivisions?.find((d) => d.name === selectedDistrict)
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
@@ -37,60 +56,51 @@ export default function NonUserWizardStep1({ onNext }: NonUserWizardStep1Props) 
 
       <div className="mb-8">
         <p className="text-lg text-gray-700 mb-6">
-          "저는 <span className="font-semibold">{city || "시·도"}</span>{" "}
-          <span className="font-semibold">{district || "시·구·군"}</span>{" "}
-          <span className="font-semibold">{neighborhood || "동·읍·면"}</span> 에 살아요."
+          "저는 <span className="font-semibold">{selectedCity || "시·도"}</span>{" "}
+          <span className="font-semibold">{selectedDistrict || "시·구·군"}</span>{" "}
+          <span className="font-semibold">{selectedNeighborhood || "동·읍·면"}</span> 에 살아요."
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <select
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={selectedCity}
+            onChange={handleCityChange}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="">시·도</option>
-            <option value="서울">서울</option>
-            <option value="부산">부산</option>
-            <option value="대구">대구</option>
-            <option value="인천">인천</option>
-            <option value="광주">광주</option>
-            <option value="대전">대전</option>
-            <option value="울산">울산</option>
-            <option value="경기">경기</option>
+            {administrativeDivisions.map((ad) => (
+              <option key={ad.name} value={ad.name}>
+                {ad.name}
+              </option>
+            ))}
           </select>
 
           <select
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
+            value={selectedDistrict}
+            onChange={handleDistrictChange}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            disabled={!city}
+            disabled={!selectedCity}
           >
             <option value="">시·구·군</option>
-            {city === "서울" && (
-              <>
-                <option value="서초구">서초구</option>
-                <option value="강남구">강남구</option>
-                <option value="송파구">송파구</option>
-                <option value="마포구">마포구</option>
-              </>
-            )}
+            {currentCity?.subdivisions?.map((d) => (
+              <option key={d.name} value={d.name}>
+                {d.name}
+              </option>
+            ))}
           </select>
 
           <select
-            value={neighborhood}
-            onChange={(e) => setNeighborhood(e.target.value)}
+            value={selectedNeighborhood}
+            onChange={handleNeighborhoodChange}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            disabled={!district}
+            disabled={!selectedDistrict}
           >
             <option value="">동·읍·면</option>
-            {district === "서초구" && (
-              <>
-                <option value="방배1동">방배1동</option>
-                <option value="방배2동">방배2동</option>
-                <option value="서초1동">서초1동</option>
-                <option value="서초2동">서초2동</option>
-              </>
-            )}
+            {currentDistrict?.subdivisions?.map((n) => (
+              <option key={n.name} value={n.name}>
+                {n.name}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -98,7 +108,7 @@ export default function NonUserWizardStep1({ onNext }: NonUserWizardStep1Props) 
       <div className="flex justify-end">
         <Button
           onClick={handleNext}
-          disabled={!city || !district || !neighborhood}
+          disabled={!selectedCity || !selectedDistrict || !selectedNeighborhood}
         >
           다음
         </Button>
