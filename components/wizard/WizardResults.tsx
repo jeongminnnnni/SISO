@@ -29,7 +29,7 @@ export default function WizardResults({ data, onRestart }: WizardResultsProps) {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div>
-                <span className="font-medium">거주지:</span>
+                <span className="font-medium">🏠거주지:</span>
                 <p>
                   {data.location?.city} {data.location?.district} {data.location?.neighborhood}
                 </p>
