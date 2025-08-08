@@ -6,10 +6,10 @@ export default function PopularClasses() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
         <div className="flex items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mr-4">인기 클래스 추천</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mr-4">인기 클래스 추천</h2>
           <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">#낚시</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
             <div className="relative">
               <Image

@@ -1,61 +1,63 @@
-     
+# SISO - AI 기반 여행 및 클래스 추천 웹 서비스
 
-  기술 스택 (Technology Stack)
+SISO는 사용자의 취향과 선호도에 맞춰 개인화된 여행지와 원데이 클래스를 추천해주는 웹 애플리케이션입니다.
 
-   * 프레임워크 (Framework): Next.js (React 기반 프레임워크)
+핵심 기능인 **설계 마법사**를 통해 몇 가지 간단한 질문에 답변하면, 최적의 여행 계획과 즐길 거리를 제안하여 사용자의 소중한 시간을 아껴주고 만족도 높은 여가 활동을 계획할 수 있도록 돕습니다.
 
-   * 프로그래밍 언어 (Language): TypeScript
-     
-   * UI 라이브러리 (UI Library): React
+## 🚀 핵심 기능: 설계 마법사 (Recommendation Wizard)
 
-   * 스타일링 (Styling): Tailwind CSS
+설계 마법사는 사용자의 여행 스타일, 관심사, 예산 등 다양한 요소를 종합적으로 분석하여 맞춤형 여행 및 클래스 패키지를 추천하는 대화형 설문 기능입니다.
 
-   * UI 컴포넌트 (UI Components): shadcn/ui
+### 작동 방식
 
-   * 패키지 매니저 (Package Manager): pnpm
+1.  **질문 & 답변:** 사용자는 여행 동반자 유형, 선호 활동, 예산 등 다양한 질문에 답변합니다.
+2.  **데이터 수집:** 사용자의 모든 답변은 `WizardContext`를 통해 실시간으로 수집 및 관리됩니다.
+3.  **AI 분석 및 추천:** 수집된 데이터를 `lib/recommendation.ts`의 추천 알고리즘으로 전달하여, 사용자의 취향에 가장 부합하는 여행지와 클래스 목록을 생성합니다.
+4.  **결과 확인:** 분석이 완료되면 `app/wizard/results` 페이지에서 추천 결과를 시각적으로 확인하고, 각 항목의 상세 정보 페이지로 이동할 수 있습니다.
 
-   * 상태 관리 (State Management): React Context API
+-   **비회원:** 최소한의 정보(여행 기간, 동반 유형 등)만으로 기본적인 추천을 받을 수 있습니다. (`NonUserWizardStep1` ~ `NonUserWizardStep4`)
+-   **회원:** 더욱 상세한 질문을 통해 고도로 개인화된 추천 결과를 제공받습니다. (`UserWizardStep1` ~ `UserWizardStep8`)
 
+## 🛠️ 기술 스택 (Technology Stack)
 
-  전체적인 구조 및 작동 원리
+-   **Framework**: Next.js (App Router)
+-   **Language**: TypeScript
+-   **Styling**: Tailwind CSS
+-   **UI Components**: shadcn/ui
+-   **State Management**: React Context API
 
-   1. 라우팅 (Routing):
-       * app/ 디렉토리의 폴더 구조가 그대로 웹사이트의 URL 경로가 됩니다.
-       * 예를 들어, app/login/page.tsx 파일은 사용자가 http://.../login 경로로
-         접속했을 때 보여지는 페이지가 됩니다.
-       * app/community/[id]/page.tsx와 같은 동적 라우팅을 통해 특정 ID를 가진
-         커뮤니티 게시글 상세 페이지(http://.../community/123)를 구현합니다.
+## 📂 프로젝트 구조
 
-   2. 프론트엔드 (Frontend - 사용자 인터페이스):
-       * 페이지 (`app/.../page.tsx`): 각 URL 경로에 해당하는 메인 페이지
-         컴포넌트입니다.
-       * 레이아웃 (`app/layout.tsx`): 모든 페이지에 공통으로 적용되는 뼈대(예:
-         헤더, 푸터)를 정의합니다.
-       * 컴포넌트 (`components/`): 페이지를 구성하는 재사용 가능한 UI
-         조각들입니다.
-           * Header.tsx, Footer.tsx 같은 공통 컴포넌트와 PopularClasses.tsx 같은
-             특정 섹션 컴포넌트로 나뉩니다.
-           * components/ui/에는 shadcn/ui를 통해 만들어진 버튼, 카드, 입력창 등
-             기본적인 UI 요소들이 있습니다.
-           * components/wizard/에는 여러 단계로 구성된 '마법사' 기능(설문, 추천
-             등) 관련 컴포넌트들이 모여 있습니다.
+```
+SISO_fullstack/
+├── app/
+│   ├── wizard/             # 🧙‍♂️ 설계 마법사 핵심 기능
+│   │   ├── page.tsx        # 마법사 시작 페이지
+│   │   └── results/        # 추천 결과 페이지
+│   │       └── page.tsx
+│   ├── travel/             # ✈️ 여행 상품 관련 페이지
+│   ├── class/              # 🎨 클래스 관련 페이지
+│   ├── community/          # 📝 커뮤니티
+│   └── api/                # 벡엔드 API
+│       └── login/
+│           └── route.ts
+├── components/
+│   ├── wizard/             # 🧙‍♂️ 설계 마법사 UI 컴포넌트
+│   │   ├── UserWizardStep1.tsx
+│   │   └── ...
+│   └── ui/                 # 🎨 shadcn/ui 기본 컴포넌트
+├── contexts/
+│   ├── WizardContext.tsx   # ✨ 설계 마법사 상태 관리
+│   └── AuthContext.tsx     # 🔐 사용자 인증 상태 관리
+└── lib/
+    ├── recommendation.ts   # 🧠 추천 시스템 로직
+    └── ...
+```
 
-   3. 백엔드 (Backend - 서버 로직):
-       * Next.js는 프론트엔드뿐만 아니라 백엔드 기능도 수행할 수 있습니다.
-       * app/api/login/route.ts 파일이 대표적인 예시입니다. 이 파일은
-         /api/login이라는 API 엔드포인트를 생성합니다.
-       * 프론트엔드(로그인 페이지)에서 사용자가 아이디와 비밀번호를 입력하면, 이
-         /api/login 주소로 요청을 보내 서버에서 로그인 유효성을 검사하고
-         데이터베이스 처리와 같은 서버 로직을 수행하게 됩니다.
+### 주요 디렉토리 설명
 
-   4. 상태 관리 (State Management):
-       * contexts/AuthContext.tsx는 사용자의 로그인 상태, 사용자 정보 등을
-         애플리케이션 전역에서 관리하는 역할을 할 가능성이 높습니다. 로그인 후 어떤      
-         컴포넌트에서든 "로그인된 사용자"임을 알 수 있게 해줍니다.
-       * contexts/WizardContext.tsx는 여러 단계에 걸친 마법사 기능에서 사용자가 각       
-         단계에서 선택한 값들을 저장하고 공유하는 역할을 합니다.
-
-<!---
-liljeongmin/liljeongmin is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+-   `app/wizard/**`: 설계 마법사 기능의 페이지 및 라우팅을 담당합니다.
+-   `components/wizard/**`: 마법사의 각 단계를 구성하는 UI 컴포넌트가 위치합니다.
+-   `contexts/WizardContext.tsx`: 마법사 진행 과정에서 사용자의 답변 데이터를 전역적으로 관리합니다.
+-   `lib/recommendation.ts`: 사용자 데이터를 기반으로 추천 결과를 생성하는 핵심 로직을 포함합니다.
+-   `app/travel/**`, `app/class/**`: 추천된 여행 및 클래스의 상세 정보를 보여주는 페이지입니다.
