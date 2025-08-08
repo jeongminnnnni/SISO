@@ -4,40 +4,40 @@ import { Star, ChevronRight } from "lucide-react"
 
 export default function MainContent() {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-8">
-      {/* 상단 섹션 - 인기 검색어와 설계 마법사 */}
-      <div className="relative mb-12 rounded-lg overflow-hidden aspect-[2/1]">
-        <Image
-          src="/Rectangle 33.png"
-          alt="설계 마법사 배경"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 z-10 flex flex-col justify-between p-8 md:p-12">
-          {/* Top Center Section for Keywords */}
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      {/* 상단 섹션 - 설계 마법사 */}
+      <div className="relative mb-12 rounded-lg overflow-hidden">
+        <div className="aspect-w-16 aspect-h-9 sm:aspect-w-2 sm:aspect-h-1">
+          <Image
+            src="/Rectangle 33.png"
+            alt="설계 마법사 배경"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="rounded-lg"
+          />
+        </div>
+        <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-6 md:p-8">
           <div className="flex justify-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
-              <span className="text-black text-sm mr-4 font-semibold">🔥인기 검색어</span>
-              <span className="text-black text-sm mr-2">     #맛집투어</span>
-              <span className="text-black text-sm mr-2">     #힐링여행</span>
-              <span className="text-black text-sm">       #가성비여행</span>
-              <span className="text-black text-sm ml-4">#액티비티</span>
+            <div className="bg-white/80 backdrop-blur-sm rounded-full px-3 py-2 text-center">
+              <span className="text-black text-xs sm:text-sm mr-2 font-semibold">🔥인기 검색어</span>
+              <span className="hidden sm:inline text-black text-xs sm:text-sm mr-2">#맛집투어</span>
+              <span className="hidden md:inline text-black text-xs sm:text-sm mr-2">#힐링여행</span>
+              <span className="hidden lg:inline text-black text-xs sm:text-sm">#가성비여행</span>
+              <span className="text-black text-xs sm:text-sm ml-2">#액티비티</span>
             </div>
           </div>
-
-          {/* Bottom Section for Main Text and Button */}
           <div className="flex justify-between items-end">
-            <h1 className="text-2xl md:text-3xl font-bold text-black mb-0 leading-relaxed text-left max-w-lg">
+            <h1 className="text-base sm:text-xl md:text-3xl font-bold text-black leading-tight max-w-[60%] sm:max-w-lg">
               3분 이내로 나에게 맞는 플랜을
               <br />
               구성해주는 '설계 마법사'
             </h1>
             <Link 
               href="/wizard" 
-              className="inline-flex items-center text-white font-bold text-lg px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 hover:from-pink-400 hover:to-indigo-500 transition-all duration-300 shadow-lg transform hover:scale-105"
+              className="inline-flex items-center text-white font-bold text-xs sm:text-base md:text-lg px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 hover:from-pink-400 hover:to-indigo-500 transition-all duration-300 shadow-lg transform hover:scale-105 whitespace-nowrap"
             >
-              설계 마법사 시작하기 →
+              시작하기 →
             </Link>
           </div>
         </div>
@@ -45,29 +45,28 @@ export default function MainContent() {
 
       {/* 추천 인기 키워드 */}
       <div className="mb-12">
-        <h2 className="text-xl font-bold text-gray-900 mb-2">추천 인기 키워드</h2>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">추천 인기 키워드</h2>
         <p className="text-gray-600 text-sm mb-6">현재 많은 사람들이 선택하고 있어요!</p>
-
-        <div className="flex items-center space-x-6">
+        <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2">
           <div className="flex items-center">
-            <ChevronRight className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-700">바다</span>
+            <ChevronRight className="h-4 w-4 text-gray-400 mr-1" />
+            <span className="text-gray-700 text-sm sm:text-base">바다</span>
           </div>
           <div className="flex items-center">
-            <ChevronRight className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-700">서핑</span>
+            <ChevronRight className="h-4 w-4 text-gray-400 mr-1" />
+            <span className="text-gray-700 text-sm sm:text-base">서핑</span>
           </div>
           <div className="flex items-center">
-            <ChevronRight className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-700">테마파크</span>
+            <ChevronRight className="h-4 w-4 text-gray-400 mr-1" />
+            <span className="text-gray-700 text-sm sm:text-base">테마파크</span>
           </div>
           <div className="flex items-center">
-            <ChevronRight className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-700">다이빙</span>
+            <ChevronRight className="h-4 w-4 text-gray-400 mr-1" />
+            <span className="text-gray-700 text-sm sm:text-base">다이빙</span>
           </div>
           <div className="flex items-center">
-            <ChevronRight className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-700">크루즈</span>
+            <ChevronRight className="h-4 w-4 text-gray-400 mr-1" />
+            <span className="text-gray-700 text-sm sm:text-base">크루즈</span>
           </div>
         </div>
       </div>
@@ -75,20 +74,13 @@ export default function MainContent() {
       {/* 인기 여행 추천 */}
       <div className="mb-12">
         <div className="flex items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mr-3">인기 여행 추천</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mr-3">인기 여행 추천</h2>
           <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">#바다</span>
         </div>
-
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_001.jpg"
-                alt="부산 바닷길"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_001.jpg" alt="부산 바닷길" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">26/30</div>
             </div>
             <div className="p-4">
@@ -104,16 +96,9 @@ export default function MainContent() {
               </div>
             </div>
           </div>
-
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_002.jpg"
-                alt="여수 바다"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_002.jpg" alt="여수 바다" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">12/20</div>
             </div>
             <div className="p-4">
@@ -129,16 +114,9 @@ export default function MainContent() {
               </div>
             </div>
           </div>
-
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_003.jpg"
-                alt="통영 바다미술관"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_003.jpg" alt="통영 바다미술관" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">24/40</div>
             </div>
             <div className="p-4">
@@ -160,20 +138,13 @@ export default function MainContent() {
       {/* 인기 클래스 추천 */}
       <div className="mb-12">
         <div className="flex items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mr-3">인기 클래스 추천</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mr-3">인기 클래스 추천</h2>
           <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">#낚시</span>
         </div>
-
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_101.jpg"
-                alt="저수지 낚시교실"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_101.jpg" alt="저수지 낚시교실" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">26/30</div>
             </div>
             <div className="p-4">
@@ -189,16 +160,9 @@ export default function MainContent() {
               </div>
             </div>
           </div>
-
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_102.jpg"
-                alt="바다 선상낚시"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_102.jpg" alt="바다 선상낚시" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">26/30</div>
             </div>
             <div className="p-4">
@@ -214,16 +178,9 @@ export default function MainContent() {
               </div>
             </div>
           </div>
-
           <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="relative">
-              <Image
-                src="/images/id_103.jpg"
-                alt="낚시터 커피"
-                width={280}
-                height={160}
-                className="w-full h-40 object-cover"
-              />
+            <div className="relative h-40">
+              <Image src="/images/id_103.jpg" alt="낚시터 커피" layout="fill" objectFit="cover" />
               <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded text-xs font-medium">26/30</div>
             </div>
             <div className="p-4">
@@ -244,14 +201,13 @@ export default function MainContent() {
 
       {/* 시소챗 추천 */}
       <div className="mb-12">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">시소챗 추천</h2>
-
-        <div className="flex flex-wrap gap-3">
-          <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">#활발한 사람들의 모임</span>
-          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">#공감</span>
-          <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">#친해져요</span>
-          <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">#아침 7시 워킹족</span>
-          <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">#한강 공원</span>
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-6">시소챗 추천</h2>
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs sm:text-sm">#활발한 사람들의 모임</span>
+          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm">#공감</span>
+          <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs sm:text-sm">#친해져요</span>
+          <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs sm:text-sm">#아침 7시 워킹족</span>
+          <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs sm:text-sm">#한강 공원</span>
         </div>
       </div>
     </main>

@@ -93,7 +93,7 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 } satisfies Config
 
 export default config
